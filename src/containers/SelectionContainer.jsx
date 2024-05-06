@@ -2,7 +2,7 @@ import React from 'react'
 import ICard from './ICard';
 import '../styles/SelectionContainer.css'
 
-const SelectionContainer = ({type, options, onOptionsSelect }) => {
+const SelectionContainer = ({copName, type, options, onOptionsSelect }) => {
 
     const handleOptionsSelect = (option) => {
         onOptionsSelect(option)
@@ -10,7 +10,7 @@ const SelectionContainer = ({type, options, onOptionsSelect }) => {
 
     return (
         <div className="selection-container">
-          <center><h2 className='selection-heading'>Select a {type}:</h2></center>
+          <center><h2 className='selection-heading'>Select a {type} for {copName}:</h2></center>
           <div className="option-cards">
 
             {options.map((option, index) => (

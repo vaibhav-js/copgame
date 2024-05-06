@@ -33,9 +33,8 @@ const CopContainer = ({ copName, cities, vehicles, setCities, setVehicles, onCom
   return (
     <div className="cop-container">
       <div className="cop-info">
-        <div className="cop-name">Select for Cop {copName}</div>
-        {!selectedCity[copName] && <SelectionContainer type='CITY' options={cities} onOptionsSelect={handleCitySelect} />}
-        {selectedCity[copName] && !selectedVehicle[copName] && <SelectionContainer type='VEHICLE' options={vehicles} onOptionsSelect={handleVehicleSelect} />}
+        {!selectedCity[copName] && <SelectionContainer copName={copName} type='CITY' options={cities} onOptionsSelect={handleCitySelect} />}
+        {selectedCity[copName] && !selectedVehicle[copName] && <SelectionContainer copName={copName} type='VEHICLE' options={vehicles} onOptionsSelect={handleVehicleSelect} />}
       </div>
     </div>
   );
