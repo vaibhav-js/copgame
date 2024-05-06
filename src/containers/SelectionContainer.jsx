@@ -10,7 +10,7 @@ const SelectionContainer = ({copName, type, options, onOptionsSelect }) => {
 
     return (
         <div className="selection-container">
-          <center><h2 className='selection-heading'>Select a {type} for {copName}:</h2></center>
+          <center><h2 className='selection-heading'>Select a {type} for Cop {copName}:</h2></center>
           <div className="option-cards">
 
             {options.map((option, index) => (

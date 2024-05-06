@@ -11,11 +11,9 @@ const CopContainer = ({ copName, cities, vehicles, setCities, setVehicles, onCom
       city === c ? { ...c, isUsed: true } : c
     );
     setCities(updatedCities);
-    console.log(updatedCities);
     setSelectedCity({...selectedCity,
       [copName]: city
     });
-    console.log(selectedCity);
   }
 
   const handleVehicleSelect = (vehicle) => {
@@ -23,11 +21,12 @@ const CopContainer = ({ copName, cities, vehicles, setCities, setVehicles, onCom
       vehicle === v ? { ...v, isUsed: true } : v
     );
     setVehicles(updatedVehicles);
-    setSelectedVehicle({...selectedVehicle, 
+    const newVehicle = {
+      ...selectedVehicle, 
       [copName]: vehicle
-    });
-    onCompleteSelection();
-    console.log(selectedVehicle)
+    }
+    setSelectedVehicle(newVehicle);
+    onCompleteSelection(selectedCity[copName], newVehicle[copName]);
   }
 
   return (
