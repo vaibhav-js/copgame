@@ -1,0 +1,15 @@
+.cop-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cop-info {
+  display: flex;
+  align-items: center;
+  flex-direction: row; 
+}
+
+.cop-name {
+  margin-right: 20px; 
+}
