@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Button, Center, Flex, VStack, Text, Heading } from '@chakra-ui/react';
-import { IconButton } from '@chakra-ui/react';
-import { InfoOutlineIcon } from '@chakra-ui/icons';
-import InstructionsModal from './InstructionsModal';
+import React from 'react';
+
 import MainContainer from './containers/MainContainer';
 
 const CopsSelection = () => {

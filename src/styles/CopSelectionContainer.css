@@ -14,3 +14,8 @@
 .cop-container-wrapper.inactive {
   opacity: 0;
 }
+.result-container {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}

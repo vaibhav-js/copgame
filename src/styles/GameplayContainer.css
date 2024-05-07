@@ -1,0 +1,5 @@
+.gameplay-container {
+    width: 90%;
+    margin: 20px auto 0; /* Auto margin for centering vertically */
+    box-shadow: 1px 14px 6px rgba(36, 36, 36, 0.1); /* Adjust the values as needed */
+}
