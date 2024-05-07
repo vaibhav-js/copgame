@@ -9,6 +9,13 @@
 
 .option-cards {
   display: flex;
-  flex-wrap: wrap;
+  gap: 20px; 
   justify-content: center; 
+}
+
+@media (max-width: 768px) {
+  .option-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
 }

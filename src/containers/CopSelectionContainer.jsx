@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../styles/CopSelectionContainer.css';
 import CopContainer from './CopContainer';
 import { Box, Button, Center, Text, VStack } from '@chakra-ui/react';
+import { CheckCircleIcon, CloseIcon } from '@chakra-ui/icons';
 
 const CopSelectionContainer = () => {
   const [selectedCopIndex, setSelectedCopIndex] = useState(0);
@@ -21,8 +22,8 @@ const CopSelectionContainer = () => {
   const [vehicles, setVehicles] = useState([
     { name: "EV Bike 1", range: 60, count: 1, isUsed: false, image: '/ev_bike.png' },
     { name: "EV Bike 2", range: 60, count: 1, isUsed: false, image: '/ev_bike.png' },
-    { name: "EV SUV", range: 120, count: 1, isUsed: false, image: '/ev_suv.png' },
-    { name: "EV Car", range: 100, count: 1, isUsed: false, image: '/ev_car.png' }
+    { name: "EV Car", range: 100, count: 1, isUsed: false, image: '/ev_car.png' },
+    { name: "EV SUV", range: 120, count: 1, isUsed: false, image: '/ev_suv.png' }
   ]);
 
   const callBackend = async (selectedCops) => {
@@ -42,6 +43,7 @@ const CopSelectionContainer = () => {
   
       const data = await response.json();
       await setResult(data);
+      console.log(data);
   
     } catch (error) {
       console.error('Error calling backend API:', error.message);
@@ -118,28 +120,48 @@ const CopSelectionContainer = () => {
       ))}
       </div>
       <div className='result-container'>
-        {result && (
-          <Box mt={4} mb={10} p={4} borderWidth="1px" borderRadius="md" boxShadow="xl" borderColor="gray.200" bg="gray.100"> {/* Add border, border radius, and background color */}
-              <Box mb={2} fontSize="xl" fontWeight="bold" color={'orange'}>Investigation Result</Box>
-              <VStack spacing={2} alignItems="flex-start">
-                {Object.keys(result).slice(0,3).map((cop, index) => {
-                  return (
-                    <Box key={index}>
-                      <Text>{`Cop ${index + 1} ${result[cop] ? 'found' : 'could not find'} the criminal`}</Text>
-                    </Box>
-                    )
-                  }
-                )}
-                <Text>Criminal city was {result[Object.keys(result)[3]]}</Text>
-              </VStack>
-              <Center>
-                <Button m={4} bgColor={'blue.200'} isLoading={loading} onClick={handleRestartGame}>
-                  Restart
-                </Button>
-              </Center>
-            </Box>
-          )}
+      {result && (
+          <Box
+            mt={4}
+            mb={10}
+            p={4}
+            borderWidth="1px"
+            borderRadius="md"
+            boxShadow="xl"
+            borderColor="gray.200"
+            minW={{ base: '50%', md: '70%' }}
+          >
+            <Box mb={2} fontSize="xl" fontWeight="bold" color={'orange'}>Investigation Result</Box>
+            <VStack spacing={2} alignItems="flex-start">
+              {Object.keys(result).slice(0, 3).map((cop, index) => (
+                <Box key={index} display="flex" alignItems="center">
+                  {result[cop] ? (
+                    <CheckCircleIcon color="green.500" boxSize={5} />
+                  ) : (
+                    <CloseIcon color="red.500" boxSize={5} />
+                  )}
+                  <Text ml={2} fontWeight="medium" color={result[cop] ? 'green.500' : 'red.500'}>{`Cop ${index + 1} ${result[cop] ? 'found' : 'could not find'} the criminal`}</Text>
+                </Box>
+              ))}
+              <Text fontWeight="medium">Criminal city was {result[Object.keys(result)[3]]}</Text>
+            </VStack>
+            <Center>
+              <Button
+                mt={4}
+                bgColor={'blue.300'}
+                color={'white'}
+                _hover={{ bgColor: 'blue.400' }}
+                _active={{ bgColor: 'blue.500' }}
+                isLoading={loading}
+                onClick={handleRestartGame}
+              >
+                Restart
+              </Button>
+            </Center>
+          </Box>
+        )}
         </div>
+
       </>
     
   )
